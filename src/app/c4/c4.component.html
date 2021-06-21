@@ -8,6 +8,18 @@
 <p>
     <input type="text" name="edad" [(ngModel)]="persona.edad"/>
 </p>
-
-
+<p>
+    <input type="checkbox" name="informatico" [(ngModel)]="persona.informatico"/>
+</p>
+<p>
+    <input type="text" name="lenguaje" [(ngModel)]="persona.lenguaje"/>
+</p>
 </form>
+<div>
+
+    {{persona.nombre}}
+    {{persona.apellidos}}
+    {{persona.edad}}
+    {{persona.informatico}}
+    {{persona.lenguaje}}
+</div>

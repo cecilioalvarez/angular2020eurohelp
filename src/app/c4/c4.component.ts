@@ -11,7 +11,7 @@ export class C4Component implements OnInit {
   persona:Persona;
   constructor() {
 
-    this.persona= {} as Persona;
+    this.persona= new Persona("pepe","perez",20,true,"java");
 
 
    }
