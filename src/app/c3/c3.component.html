@@ -1,0 +1,12 @@
+<div *ngIf="mostrar">
+
+<p *ngFor="let persona of listaPersonas; let indice=index;let impar=odd;let par=even" [ngClass]="{azul:par,verde:impar}" >
+
+{{indice}}   
+{{persona.nombre}} {{persona.apellidos}}{{persona.edad}}
+</p>
+
+</div>
+<input type="button" value="mostrar"/>
+<input type="button" value="ocultar"/>
+
