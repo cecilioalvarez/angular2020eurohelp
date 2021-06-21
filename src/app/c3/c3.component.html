@@ -1,11 +1,22 @@
 <div *ngIf="mostrar">
 
-<p *ngFor="let persona of listaPersonas; let indice=index;let impar=odd;let par=even" [ngClass]="{azul:par,verde:impar}" >
+<p
+ *ngFor="let persona of listaPersonas; let indice=index;let impar=odd;let par=even" 
+ [ngClass]="{azul:par,verde:impar}"
+ (click)="seleccionar(persona)"
+ >
 
 {{indice}}   
 {{persona.nombre}} {{persona.apellidos}}{{persona.edad}}
 </p>
 
 </div>
-<input type="button" value="mostrar"/>
-<input type="button" value="ocultar"/>
+<input type="button" value="mostrar" (click)="ver()"/>
+<input type="button" value="ocultar" (click)="ocultar()"/>
+<div>
+    La persona seleccionada es :
+    {{personaSeleccionada?.nombre}}
+    {{personaSeleccionada?.apellidos}}
+    {{personaSeleccionada?.edad}}
+
+</div>

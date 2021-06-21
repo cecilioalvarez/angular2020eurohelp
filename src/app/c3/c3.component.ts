@@ -9,6 +9,8 @@ import { Persona } from '../persona';
 export class C3Component implements OnInit {
 
   listaPersonas:Persona[]=[];
+  // que yo voy a seleccionar
+  personaSeleccionada?:Persona;
   mostrar:boolean=true;
 
   constructor() {
@@ -20,9 +22,23 @@ export class C3Component implements OnInit {
 
    }
 
+seleccionar(p:Persona) {
+
+  this.personaSeleccionada=p;
+}
+
+
   ngOnInit(): void {
 
 
+  }
+
+  ver() {
+
+    this.mostrar=true;
+  }
+  ocultar() {
+    this.mostrar=false;
   }
 
 }
