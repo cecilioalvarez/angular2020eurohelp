@@ -8,8 +8,8 @@ import { ProductosService } from 'src/app/servicios/productos.service';
   styleUrls: ['./listaproductos.component.css']
 })
 export class ListaproductosComponent implements OnInit {
-
-  listaProductos:Producto[]=[];
+  //me declaro la variable
+  listaProductos:Producto[];
   nuevo:Producto;
   //inyeccion de dependencia 
   // con angular como framework
@@ -21,11 +21,11 @@ export class ListaproductosComponent implements OnInit {
    this.listaProductos=productoService.buscarTodos();
 
   }
+  // el que esta en el componente
   insertar() {
     // es un array y referencia al objeto
-    this.listaProductos.push(this.nuevo);
-    //formulario como nuevo, que no es ni mas ni menos que este producto
-    //genera un nuevo objeto vacio
+  
+    this.productoService.insertar(this.nuevo);
     this.nuevo={} as Producto;
 
   }

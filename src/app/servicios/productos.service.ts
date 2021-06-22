@@ -4,8 +4,9 @@ import { Producto } from '../dominio/producto';
 @Injectable({
   providedIn: 'root'
 })
+// habra generado un objeto en memoria
 export class ProductosService {
-
+  // es un objeto en memoria esta dentro de un singleton
   listaProductos:Producto[]=[];
   
   constructor() { 
@@ -24,6 +25,11 @@ export class ProductosService {
 
     let posicion=this.listaProductos.indexOf(producto);
     this.listaProductos.splice(posicion,1);
+  }
+  // en el servicio
+  public insertar(producto:Producto):void {
+
+    this.listaProductos.push(producto);
   }
 
 }
