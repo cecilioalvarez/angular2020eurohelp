@@ -1,25 +1,67 @@
-<table>
+<div *ngIf="vistaActiva == 'listaProductos'">
+  <table>
     <tr *ngFor="let producto of listaProductos">
-
-        <td>{{producto.id}}</td>
-        <td>{{producto.concepto}}</td>
-        <td>{{producto.importe}}</td>
-        <td><input type="button" value="borrar" (click)="borrar(producto)"></td>
-
+      <td>{{ producto.id }}</td>
+      <td>{{ producto.concepto }}</td>
+      <td>{{ producto.importe }}</td>
+      <td><input type="button" value="borrar" (click)="borrar(producto)" /></td>
+      <td>
+        <input
+          type="button"
+          value="editar"
+          (click)="editarProducto(producto)"
+        />
+      </td>
+      <td>
+        <input type="button" value="detalle" (click)="verDetalle(producto)" />
+      </td>
     </tr>
-</table>
-<form>
+  </table>
+  <input type="button" value="nuevo producto" (click)="nuevoProducto()" />
+</div>
+
+<div *ngIf="vistaActiva == 'formularioProductos'">
+  <p>insertando</p>
+  <form>
     <p>
-        <input type="text" name="id" [(ngModel)]="nuevo.id"/>
+      <input type="text" name="id" [(ngModel)]="nuevo.id" />
     </p>
     <p>
-        <input type="text" name="concepto" [(ngModel)]="nuevo.concepto"/>
+      <input type="text" name="concepto" [(ngModel)]="nuevo.concepto" />
     </p>
     <p>
-        <input type="text" name="importe" [(ngModel)]="nuevo.importe"/>
+      <input type="text" name="importe" [(ngModel)]="nuevo.importe" />
     </p>
     <p>
-        <input type="button" name="aceptar" value="aceptar" (click)="insertar()"/>
+      <input
+        type="button"
+        name="aceptar"
+        value="aceptar"
+        (click)="insertar()"
+      />
     </p>
-</form>
-{{nuevo.id}}{{nuevo.concepto}}{{nuevo.importe}}
+  </form>
+</div>
+<div *ngIf="vistaActiva == 'editarProductos'">
+  <p>editando</p>
+  <form>
+    <p>
+      <input type="text" name="id" [(ngModel)]="seleccionado.id" />
+    </p>
+    <p>
+      <input type="text" name="concepto" [(ngModel)]="seleccionado.concepto" />
+    </p>
+    <p>
+      <input type="text" name="importe" [(ngModel)]="seleccionado.importe" />
+    </p>
+    <p>
+      <input type="button" name="aceptar" value="aceptar" (click)="salvar()" />
+    </p>
+  </form>
+</div>
+<div *ngIf="vistaActiva == 'detalle'">
+  <p>{{ seleccionado.id }}</p>
+  <p>{{ seleccionado.concepto }}</p>
+  <p>{{ seleccionado.importe }}</p>
+  <input type="button" value="aceptar" (click)="vistaActiva='listaProductos'"/>
+</div>
