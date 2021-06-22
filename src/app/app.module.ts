@@ -10,6 +10,7 @@ import { C3Component } from './c3/c3.component';
 import { C4Component } from './c4/c4.component';
 import { C5Component } from './c5/c5.component';
 import { ListaproductosComponent } from './vistas/listaproductos/listaproductos.component';
+import { VistaLibrosComponent } from './vistas/vista-libros/vista-libros.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { ListaproductosComponent } from './vistas/listaproductos/listaproductos.
     C4Component,
     C5Component,
     ListaproductosComponent,
+    VistaLibrosComponent,
   ],
   imports: [
     BrowserModule,
