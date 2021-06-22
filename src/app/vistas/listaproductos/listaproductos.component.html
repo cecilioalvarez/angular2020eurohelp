@@ -1,1 +1,25 @@
-<p>listaproductos works!</p>
+<table>
+    <tr *ngFor="let producto of listaProductos">
+
+        <td>{{producto.id}}</td>
+        <td>{{producto.concepto}}</td>
+        <td>{{producto.importe}}</td>
+        <td><input type="button" value="borrar" (click)="borrar(producto)"></td>
+
+    </tr>
+</table>
+<form>
+    <p>
+        <input type="text" name="id" [(ngModel)]="nuevo.id"/>
+    </p>
+    <p>
+        <input type="text" name="concepto" [(ngModel)]="nuevo.concepto"/>
+    </p>
+    <p>
+        <input type="text" name="importe" [(ngModel)]="nuevo.importe"/>
+    </p>
+    <p>
+        <input type="button" name="aceptar" value="aceptar" (click)="insertar()"/>
+    </p>
+</form>
+{{nuevo.id}}{{nuevo.concepto}}{{nuevo.importe}}

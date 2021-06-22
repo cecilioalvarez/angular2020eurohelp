@@ -11,6 +11,7 @@ import { C4Component } from './c4/c4.component';
 import { C5Component } from './c5/c5.component';
 import { ListaproductosComponent } from './vistas/listaproductos/listaproductos.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +20,7 @@ import { ListaproductosComponent } from './vistas/listaproductos/listaproductos.
     C3Component,
     C4Component,
     C5Component,
-    ListaproductosComponent
+    ListaproductosComponent,
   ],
   imports: [
     BrowserModule,
