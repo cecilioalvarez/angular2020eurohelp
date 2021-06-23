@@ -5,6 +5,7 @@
     <td>{{ libro.autor }}</td>
     <td>{{ libro.importe }}</td>
     <td><input type="button" value="borrar" (click)="borrar(libro)" /></td>
+    <td><input type="button" value="detalle" (click)="detalle(libro)" /></td>
   </tr>
 </table>
 <form>
@@ -16,3 +17,21 @@
     <input type="button" value="aceptar" (click)="insertar(nuevo)"/>
   </p>
 </form>
+<div>
+  {{seleccionado.isbn}}
+  {{seleccionado.titulo}}
+  {{seleccionado.autor}}
+  {{seleccionado.importe}}
+
+</div>
+
+<form>
+  <p>isbn<input type="text" name="isbn" [(ngModel)]="editable.isbn" /></p>
+  <p>titulo<input type="text" name="titulo" [(ngModel)]="editable.titulo" /></p>
+  <p>autor<input type="text" name="autor" [(ngModel)]="editable.autor" /></p>
+  <p>importe<input type="text" name="importe" [(ngModel)]="editable.importe" /></p>
+  <p>
+    <input type="button" value="aceptar" (click)="salvar(editable)"/>
+  </p>
+</form>
+

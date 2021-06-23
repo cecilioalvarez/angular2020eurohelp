@@ -10,19 +10,39 @@ import { LibrosRESTService } from 'src/app/servicios/libros-rest.service';
 export class VistaLibrosComponent implements OnInit {
 
   listaLibros:Libro[]=[]
-  
+  seleccionado:Libro;
   nuevo:Libro;
-
+  editable:Libro;
   constructor(private librosService:LibrosRESTService) { 
     this.nuevo={} as Libro;
+    this.seleccionado={} as Libro;
+    this.editable={} as Libro;
 
       librosService.buscarTodos().then( (datos)=> {
 
           this.listaLibros=datos;
       })
   }
+  salvar (libro:Libro) {
+    
+  }
+
+  detalle (libro:Libro) {
+
+      //this.librosService.buscarUno(libro.isbn).then((libro)=> {
+
+        this.seleccionado=libro;
+      //})
+  }
+
+
   insertar(libro:Libro) {
 
+      this.librosService
+      .insertar(libro)
+      .then(()=> this.librosService.buscarTodos())
+      .then((datos)=>this.listaLibros=datos);
+        
     
   }
 
