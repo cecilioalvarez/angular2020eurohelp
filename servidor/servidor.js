@@ -7,13 +7,26 @@ const port = 3000
 
 let libros=[];
 let libro1= {isbn:"1",titulo:"java",autor:"juan",importe:20};
+let libro4= {isbn:"4",titulo:"javita",autor:"juan",importe:20};
+let libro5= {isbn:"5",titulo:"jeta",autor:"juan",importe:20};
+let libro6= {isbn:"6",titulo:"javier",autor:"juan",importe:20};
 let libro2= {isbn:"2",titulo:"net",autor:"ana",importe:20};
 let libro3= {isbn:"3",titulo:"c#",autor:"david",importe:30};
 
-libros.push(libro1,libro2,libro3)
+libros.push(libro1,libro2,libro3,libro4,libro5,libro6)
 
 app.get('/libros', (req, res) => {
   res.send(libros)
+})
+
+app.get('/libros/filtro/:titulo', (req, res) => {
+  // me busca en el array de javascript el elemento con ese isbn
+  let listaFiltro=libros.filter(function (elemento) {
+
+      return elemento.titulo.startsWith(req.params.titulo);
+  })
+
+  res.send(listaFiltro);
 })
 
 app.get('/libros/:isbn', (req, res) => {

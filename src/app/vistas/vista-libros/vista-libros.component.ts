@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Libro } from 'src/app/dominio/libro';
 import { LibrosRESTService } from 'src/app/servicios/libros-rest.service';
-
+import { mergeMap, map } from "rxjs/operators";
+import { Subject } from 'rxjs';
 @Component({
   selector: 'app-vista-libros',
   templateUrl: './vista-libros.component.html',
@@ -9,73 +10,77 @@ import { LibrosRESTService } from 'src/app/servicios/libros-rest.service';
 })
 export class VistaLibrosComponent implements OnInit {
 
-  listaLibros:Libro[]=[]
-  seleccionado:Libro;
-  nuevo:Libro;
-  editable:Libro;
-  constructor(private librosService:LibrosRESTService) { 
-    this.nuevo={} as Libro;
-    this.seleccionado={} as Libro;
-    this.editable={} as Libro;
+  listaLibros: Libro[] = []
+  seleccionado: Libro;
+  nuevo: Libro;
+  editable: Libro;
+  // porque yo diseño un observable desde cero
+  observable= new Subject<KeyboardEvent>();
+  filtro:string="";
 
-      librosService.buscarTodos().then( (datos)=> {
+  constructor(private librosService: LibrosRESTService) {
+    this.nuevo = {} as Libro;
+    this.seleccionado = {} as Libro;
+    this.editable = {} as Libro;
 
-          this.listaLibros=datos;
-      })
-  }
+    this.observable.pipe(map((event:any)=> {
+          //transformame el evento en el texto que hay en la caja
+          return event.target.value;
 
-  editar(libro:Libro) {
-    //let libroSalvar={} as Libro;
-    
-    Object.assign(this.editable,libro)
-
-    
-
-  }
-
-  salvar () {
-   
-    this.librosService.actualizar(this.editable)
-    .then(()=> this.librosService.buscarTodos())
-    .then((datos)=>this.listaLibros=datos);
-  }
-
-  detalle (libro:Libro) {
-
-      //this.librosService.buscarUno(libro.isbn).then((libro)=> {
-
-        this.seleccionado=libro;
-      //})
-  }
+    })).subscribe((datos)=>console.log(datos));
 
 
-  insertar(libro:Libro) {
 
-      this.librosService
-      .insertar(libro)
-      .then(()=> this.librosService.buscarTodos())
-      .then((datos)=>this.listaLibros=datos);
-        
-    
-  }
 
-  borrar(libro:Libro):void {
-    
-    //piramide de DOM , es cuando nosotros por temas de progrmación asincrona
-    //combinamos unas llamadas ajax con otras llamadas ajax
 
-    this.librosService.borrar(libro)
-    .then(()=>this.librosService.buscarTodos())
-    .then((datos)=>this.listaLibros=datos);
-    /*
-    this.librosService.borrar(libro).then((datos)=> {
-        //esta bastante mal construido
-        this.librosService.buscarTodos().then((datos)=> {
-
-          
-        })
+    librosService.buscarTodos().subscribe((datos) => {
+      this.listaLibros = datos;
     })
-    */
+  }
+
+  editar(libro: Libro) {
+    //let libroSalvar={} as Libro;
+
+    Object.assign(this.editable, libro)
+
+
+
+  }
+
+  salvar() {
+
+    this.librosService.actualizar(this.editable)
+      .pipe(mergeMap(e => this.librosService.buscarTodos()))
+      .subscribe((datos) => this.listaLibros = datos);
+  }
+
+  detalle(libro: Libro) {
+
+    //this.librosService.buscarUno(libro.isbn).then((libro)=> {
+
+    this.seleccionado = libro;
+    //})
+  }
+
+
+  insertar(libro: Libro) {
+
+    this.librosService
+      .insertar(libro)
+      .pipe(mergeMap(e => this.librosService.buscarTodos()))
+      .subscribe((datos) => this.listaLibros = datos);
+
+
+  }
+
+  borrar(libro: Libro): void {
+
+    this.
+      librosService
+      .borrar(libro)
+      .pipe(mergeMap(e => this.librosService.buscarTodos()))
+      .subscribe((datos) => this.listaLibros = datos);
+
   }
   ngOnInit(): void {
   }

@@ -1,3 +1,5 @@
+
+<input type="text" [(ngModel)]="filtro" name="filtro" (keyup)="observable.next($event)"/>
 <table>
   <tr *ngFor="let libro of listaLibros">
     <td>{{ libro.isbn }}</td>

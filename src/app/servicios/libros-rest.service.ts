@@ -12,27 +12,27 @@ export class LibrosRESTService {
 
   }
 // metodo buscar todos
-  public buscarTodos(): Promise<Libro[]> {
+  public buscarTodos(): Observable<Libro[]> {
 
-    return this.http.get<Libro[]>("http://localhost:3000/libros").toPromise()
-
-  }
-  public buscarUno(isbn:string): Promise<Libro> {
-
-    return this.http.get<Libro>(`http://localhost:3000/libros/${isbn}`).toPromise()
+    return this.http.get<Libro[]>("http://localhost:3000/libros");
 
   }
-  public borrar(libro:Libro):Promise<Libro> {
+  public buscarUno(isbn:string): Observable<Libro> {
 
-    return this.http.delete<Libro>(`http://localhost:3000/libros/${libro.isbn}`).toPromise();
+    return this.http.get<Libro>(`http://localhost:3000/libros/${isbn}`);
+
+  }
+  public borrar(libro:Libro):Observable<Libro> {
+
+    return this.http.delete<Libro>(`http://localhost:3000/libros/${libro.isbn}`);
   }
 
-  public insertar(libro:Libro):Promise<Libro> {
+  public insertar(libro:Libro):Observable<Libro> {
 
-    return this.http.post<Libro>(`http://localhost:3000/libros`,libro).toPromise();
+    return this.http.post<Libro>(`http://localhost:3000/libros`,libro);
   }
-  public actualizar(libro:Libro):Promise<Libro> {
+  public actualizar(libro:Libro):Observable<Libro> {
 
-    return this.http.put<Libro>(`http://localhost:3000/libros/${libro.isbn}`,libro).toPromise();
+    return this.http.put<Libro>(`http://localhost:3000/libros/${libro.isbn}`,libro);
   }
 }
