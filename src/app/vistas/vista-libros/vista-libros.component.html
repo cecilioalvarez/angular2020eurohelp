@@ -6,6 +6,7 @@
     <td>{{ libro.importe }}</td>
     <td><input type="button" value="borrar" (click)="borrar(libro)" /></td>
     <td><input type="button" value="detalle" (click)="detalle(libro)" /></td>
+    <td><input type="button" value="editar" (click)="editar(libro)" /></td>
   </tr>
 </table>
 <form>
@@ -31,7 +32,7 @@
   <p>autor<input type="text" name="autor" [(ngModel)]="editable.autor" /></p>
   <p>importe<input type="text" name="importe" [(ngModel)]="editable.importe" /></p>
   <p>
-    <input type="button" value="aceptar" (click)="salvar(editable)"/>
+    <input type="button" value="aceptar" (click)="salvar()"/>
   </p>
 </form>
 

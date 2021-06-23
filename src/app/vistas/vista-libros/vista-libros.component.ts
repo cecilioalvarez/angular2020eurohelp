@@ -23,8 +23,21 @@ export class VistaLibrosComponent implements OnInit {
           this.listaLibros=datos;
       })
   }
-  salvar (libro:Libro) {
+
+  editar(libro:Libro) {
+    //let libroSalvar={} as Libro;
     
+    Object.assign(this.editable,libro)
+
+    
+
+  }
+
+  salvar () {
+   
+    this.librosService.actualizar(this.editable)
+    .then(()=> this.librosService.buscarTodos())
+    .then((datos)=>this.listaLibros=datos);
   }
 
   detalle (libro:Libro) {

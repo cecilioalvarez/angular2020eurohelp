@@ -31,4 +31,8 @@ export class LibrosRESTService {
 
     return this.http.post<Libro>(`http://localhost:3000/libros`,libro).toPromise();
   }
+  public actualizar(libro:Libro):Promise<Libro> {
+
+    return this.http.put<Libro>(`http://localhost:3000/libros/${libro.isbn}`,libro).toPromise();
+  }
 }

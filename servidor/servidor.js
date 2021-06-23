@@ -6,9 +6,9 @@ app.use(express.json());
 const port = 3000
 
 let libros=[];
-let libro1= {isbn:"1",titulo:"java",autor:"juan",precio:20};
-let libro2= {isbn:"2",titulo:"net",autor:"ana",precio:20};
-let libro3= {isbn:"3",titulo:"c#",autor:"david",precio:30};
+let libro1= {isbn:"1",titulo:"java",autor:"juan",importe:20};
+let libro2= {isbn:"2",titulo:"net",autor:"ana",importe:20};
+let libro3= {isbn:"3",titulo:"c#",autor:"david",importe:30};
 
 libros.push(libro1,libro2,libro3)
 
