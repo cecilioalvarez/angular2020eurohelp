@@ -17,4 +17,8 @@ export class LibrosRESTService {
     return this.http.get<Libro[]>("http://localhost:3000/libros").toPromise()
 
   }
+  public borrar(libro:Libro):Promise<Libro> {
+
+    return this.http.delete<Libro>(`http://localhost:3000/libros/${libro.isbn}`).toPromise();
+  }
 }

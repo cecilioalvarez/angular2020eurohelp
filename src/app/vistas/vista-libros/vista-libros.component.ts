@@ -10,14 +10,40 @@ import { LibrosRESTService } from 'src/app/servicios/libros-rest.service';
 export class VistaLibrosComponent implements OnInit {
 
   listaLibros:Libro[]=[]
+  
+  nuevo:Libro;
+
   constructor(private librosService:LibrosRESTService) { 
+    this.nuevo={} as Libro;
 
-      librosService.buscarTodos().then((datos)=> {
+      librosService.buscarTodos().then( (datos)=> {
 
-          console.log(datos);
+          this.listaLibros=datos;
       })
   }
+  insertar(libro:Libro) {
 
+    
+  }
+
+  borrar(libro:Libro):void {
+    
+    //piramide de DOM , es cuando nosotros por temas de progrmación asincrona
+    //combinamos unas llamadas ajax con otras llamadas ajax
+
+    this.librosService.borrar(libro)
+    .then(()=>this.librosService.buscarTodos())
+    .then((datos)=>this.listaLibros=datos);
+    /*
+    this.librosService.borrar(libro).then((datos)=> {
+        //esta bastante mal construido
+        this.librosService.buscarTodos().then((datos)=> {
+
+          
+        })
+    })
+    */
+  }
   ngOnInit(): void {
   }
 
