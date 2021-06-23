@@ -6,7 +6,7 @@ let libros=[];
 let libro1= {isbn:"1",titulo:"java",autor:"juan",precio:20};
 libros.push(libro1)
 
-app.get('/', (req, res) => {
+app.get('/libros', (req, res) => {
   res.send(libros)
 })
 

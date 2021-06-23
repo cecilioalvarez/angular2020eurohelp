@@ -11,7 +11,7 @@ export class LibrosRESTService {
   constructor(private http: HttpClient) {
 
   }
-
+// metodo buscar todos
   public buscarTodos(): Promise<Libro[]> {
 
     return this.http.get<Libro[]>("http://localhost:3000/libros").toPromise()
