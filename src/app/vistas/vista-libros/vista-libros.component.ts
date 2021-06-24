@@ -15,34 +15,34 @@ export class VistaLibrosComponent implements OnInit {
   nuevo: Libro;
   editable: Libro;
   // porque yo diseño un observable desde cero
-  observable= new Subject<KeyboardEvent>();
-  
-  filtro:string="";
+  observable = new Subject<KeyboardEvent>();
+
+  filtro: string = "";
 
   constructor(private librosService: LibrosRESTService) {
-    
+
     this.nuevo = {} as Libro;
     this.seleccionado = {} as Libro;
     this.editable = {} as Libro;
 
-     // es otra transformación que se encargue de convertir el mensaje
+    // es otra transformación que se encargue de convertir el mensaje
     // en una llamada ajax y esa llamada ajax se traiga lso datos
+   
+      this.observable.pipe(map((event: any) => {
+        //transformame el evento en el texto que hay en la caja
+        return event.target.value;
+
+      })).pipe(mergeMap((event: any) => {
+
+        return this.librosService.buscarPorConcepto(this.filtro);
+
+      })).subscribe((datos) => this.listaLibros = datos);
+      
+      /*
+      librosService.buscarTodos().subscribe((datos) => {
+        this.listaLibros = datos;
+      })*/
     
-    this.observable.pipe(map((event:any)=> {
-          //transformame el evento en el texto que hay en la caja
-          return event.target.value;
-
-    })).pipe(mergeMap((event:any)=> {
-
-      return this.librosService.buscarPorConcepto(this.filtro);
-
-    })).subscribe((datos)=>this.listaLibros=datos);
-
-    /*
-    librosService.buscarTodos().subscribe((datos) => {
-      this.listaLibros = datos;
-    })
-    */
   }
 
   editar(libro: Libro) {
