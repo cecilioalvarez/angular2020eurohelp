@@ -12,6 +12,10 @@ import { C4Component } from './c4/c4.component';
 import { C5Component } from './c5/c5.component';
 import { ListaproductosComponent } from './vistas/listaproductos/listaproductos.component';
 import { VistaLibrosComponent } from './vistas/vista-libros/vista-libros.component';
+import { ListaLibrosComponent } from './vistasrouter/lista-libros/lista-libros.component';
+import { FormularioNuevoLibrosComponent } from './vistasrouter/formulario-nuevo-libros/formulario-nuevo-libros.component';
+import { DetalleLibroComponent } from './vistasrouter/detalle-libro/detalle-libro.component';
+
 
 
 @NgModule({
@@ -24,6 +28,9 @@ import { VistaLibrosComponent } from './vistas/vista-libros/vista-libros.compone
     C5Component,
     ListaproductosComponent,
     VistaLibrosComponent,
+    ListaLibrosComponent,
+    FormularioNuevoLibrosComponent,
+    DetalleLibroComponent,
   ],
   imports: [
     BrowserModule,
