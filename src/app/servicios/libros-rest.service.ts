@@ -17,6 +17,13 @@ export class LibrosRESTService {
     return this.http.get<Libro[]>("http://localhost:3000/libros");
 
   }
+  public buscarPorConcepto(titulo:string): Observable<Libro[]> {
+    //get y me devuelve la lista con el concepto que hayamos escrito
+    //recordar que el servicio rest lo implementa con un starwith
+    return this.http.get<Libro[]>(`http://localhost:3000/libros/filtro/${titulo}`);
+
+  }
+
   public buscarUno(isbn:string): Observable<Libro> {
 
     return this.http.get<Libro>(`http://localhost:3000/libros/${isbn}`);
