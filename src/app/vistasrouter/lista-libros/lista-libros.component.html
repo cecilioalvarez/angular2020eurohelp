@@ -4,6 +4,7 @@
     <td>{{ libro.titulo }}</td>
     <td>{{ libro.autor }}</td>
     <td>{{ libro.importe }}</td>
+    <td><input type="button" value="detalle" (click)="detalle(libro)" /></td>
   </tr>
 </table>
 <a [routerLink]="['/formularionuevo']">nuevo</a>

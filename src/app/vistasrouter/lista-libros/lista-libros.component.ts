@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Libro } from 'src/app/dominio/libro';
 import { LibrosRESTService } from 'src/app/servicios/libros-rest.service';
 
@@ -10,13 +11,18 @@ import { LibrosRESTService } from 'src/app/servicios/libros-rest.service';
 export class ListaLibrosComponent implements OnInit {
 
   listaLibros: Libro[] = []
-  constructor(private librosService: LibrosRESTService) {
+  constructor(private librosService: LibrosRESTService,private router:Router) {
 
     librosService.buscarTodos().subscribe((datos) => {
       this.listaLibros = datos;
     })
 
-   }
+
+  }
+  detalle(libro:Libro) {
+
+      this.router.navigate(["detalle",libro.isbn]);
+  }
 
   ngOnInit(): void {
   }
