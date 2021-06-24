@@ -16,6 +16,22 @@ import { ListaLibrosComponent } from './vistasrouter/lista-libros/lista-libros.c
 import { FormularioNuevoLibrosComponent } from './vistasrouter/formulario-nuevo-libros/formulario-nuevo-libros.component';
 import { DetalleLibroComponent } from './vistasrouter/detalle-libro/detalle-libro.component';
 import { LoginComponent } from './vistasrouter/login/login.component';
+import { TokenService } from './servicios/token.service';
+import {JwtModule, JWT_OPTIONS} from "@auth0/angular-jwt";
+
+// parametriza de donde me traigo el token jwt de todo mi codigo donde
+// esta 
+export function jwtOptionsFactory(tokenService:TokenService) {
+  return {
+    tokenGetter: () => {
+      // esta en nuestro servicio que hemos construido a mano
+      return tokenService.token;
+    },
+    whitelistedDomains: ["localhost:3000"],
+    blacklistedRoutes: ["localhost:3000/login"]
+
+  }
+}
 
 
 
@@ -38,8 +54,14 @@ import { LoginComponent } from './vistasrouter/login/login.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
-  ],
+    HttpClientModule,
+    JwtModule.forRoot({
+      jwtOptionsProvider: {
+      provide: JWT_OPTIONS,
+      useFactory: jwtOptionsFactory,
+      deps: [TokenService],
+
+    }})],
   providers: [],
   bootstrap: [AppComponent]
 })
