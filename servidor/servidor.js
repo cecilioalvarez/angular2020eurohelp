@@ -1,19 +1,41 @@
 const express = require('express')
 var cors=require("cors");
 const app = express()
+//libreria de tokens
+const jwt= require("jsonwebtoken");
+// la integracion con express
+const expressJwt= require("express-jwt");
+
+app.use(expressJwt({secret:"superclave",algorithms: ['RS256']})
+.unless({path :["/login"]}))
 app.use(cors())
+
 app.use(express.json());
 const port = 3000
 
 let libros=[];
 let libro1= {isbn:"1",titulo:"java",autor:"juan",importe:20};
 let libro4= {isbn:"4",titulo:"javita",autor:"juan",importe:20};
-let libro5= {isbn:"5",titulo:"jeta",autor:"juan",importe:20};
-let libro6= {isbn:"6",titulo:"javier",autor:"juan",importe:20};
-let libro2= {isbn:"2",titulo:"net",autor:"ana",importe:20};
-let libro3= {isbn:"3",titulo:"c#",autor:"david",importe:30};
 
-libros.push(libro1,libro2,libro3,libro4,libro5,libro6)
+
+libros.push(libro1,libro4)
+
+app.post("/login",function(req,res) {
+
+    const usuario= req.body;
+
+    if (usuario.nombre=="ceci" && usuario.clave=="ceci") {
+
+      var token= jwt.sign({id:usuario.nombre},'superclave',{expiresIn:'2h'});
+      res.send(token);
+    }else {
+      res.sendStatus(401);
+    }
+
+});
+
+
+
 
 app.get('/libros', (req, res) => {
   res.send(libros)
