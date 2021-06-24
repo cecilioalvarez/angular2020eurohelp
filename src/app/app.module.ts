@@ -15,6 +15,7 @@ import { VistaLibrosComponent } from './vistas/vista-libros/vista-libros.compone
 import { ListaLibrosComponent } from './vistasrouter/lista-libros/lista-libros.component';
 import { FormularioNuevoLibrosComponent } from './vistasrouter/formulario-nuevo-libros/formulario-nuevo-libros.component';
 import { DetalleLibroComponent } from './vistasrouter/detalle-libro/detalle-libro.component';
+import { LoginComponent } from './vistasrouter/login/login.component';
 
 
 
@@ -31,6 +32,7 @@ import { DetalleLibroComponent } from './vistasrouter/detalle-libro/detalle-libr
     ListaLibrosComponent,
     FormularioNuevoLibrosComponent,
     DetalleLibroComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

@@ -6,7 +6,7 @@ const jwt= require("jsonwebtoken");
 // la integracion con express
 const expressJwt= require("express-jwt");
 
-app.use(expressJwt({secret:"superclave",algorithms: ['RS256']})
+app.use(expressJwt({secret:"superclave",algorithms: ['HS256']})
 .unless({path :["/login"]}))
 app.use(cors())
 
@@ -27,7 +27,7 @@ app.post("/login",function(req,res) {
     if (usuario.nombre=="ceci" && usuario.clave=="ceci") {
 
       var token= jwt.sign({id:usuario.nombre},'superclave',{expiresIn:'2h'});
-      res.send(token);
+      res.send({token:token});
     }else {
       res.sendStatus(401);
     }

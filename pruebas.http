@@ -1,0 +1,13 @@
+GET http://localhost:3000/libros  
+
+###
+POST http://localhost:3000/login HTTP/1.1
+content-type: application/json
+
+{
+    "nombre": "ceci",
+    "clave": "ceci"
+}
+###
+GET http://localhost:3000/libros  
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNlY2kiLCJpYXQiOjE2MjQ1MzAxMTUsImV4cCI6MTYyNDUzNzMxNX0.gUpsqDCpGMVFr7ojQWbNqZ9Y8i5mEyuyHVJ8CajoRts
